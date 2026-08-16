@@ -68,7 +68,7 @@ export default function EmployeeProfile() {
           <img alt={`${employee.name} Profile`} className="w-24 h-24 rounded-full object-cover border-2 border-white dark:border-gray-800 shadow-sm" src={employee.avatar} />
           
           <div className="flex-1 space-y-2">
-            <h2 className="text-[28px] md:text-[36px] font-bold text-gray-900 dark:text-white">{employee.name}</h2>
+            <h2 className="text-[28px] md:text-[36px] font-bold tracking-tight text-gray-900 dark:text-white">{employee.name}</h2>
             <div className="flex flex-wrap gap-4 items-center text-[14px] text-gray-500 dark:text-gray-400">
               <div className="flex items-center gap-1.5">
                 <span className="material-symbols-outlined text-[18px]">location_on</span>

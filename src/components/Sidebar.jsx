@@ -50,7 +50,7 @@ const Sidebar = () => {
           </li>
           {/* Compliance */}
           <li>
-            <Link className={getLinkClasses('/compliance')} href="#">
+            <Link className={getLinkClasses('/compliance')} href="/compliance">
               <span className="material-symbols-outlined">gavel</span>
               Compliance
             </Link>

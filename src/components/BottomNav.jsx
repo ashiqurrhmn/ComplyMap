@@ -50,7 +50,7 @@ const BottomNav = () => {
       </Link>
 
       {/* Compliance */}
-      <Link href="#" className={getLinkClasses('/compliance')}>
+      <Link href="/compliance" className={getLinkClasses('/compliance')}>
         <div className={getIconContainerClasses('/compliance')}>
           <span className="material-symbols-outlined">gavel</span>
         </div>
