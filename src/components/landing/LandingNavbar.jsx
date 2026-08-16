@@ -31,8 +31,8 @@ const LandingNavbar = () => {
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
-            ? "bg-white/90 dark:bg-[#07090e]/90 backdrop-blur-xl border-b border-gray-200 dark:border-white/[0.04] shadow-sm dark:shadow-none"
-            : "bg-transparent"
+            ? "bg-white/70 dark:bg-[#0c0f17]/60 backdrop-blur-xl border-b border-gray-200 dark:border-white/[0.08] shadow-sm dark:shadow-[0_4px_30px_rgba(0,0,0,0.1)]"
+            : "bg-white/40 dark:bg-[#0c0f17]/40 backdrop-blur-md border-b border-gray-200/30 dark:border-white/[0.04]"
         }`}
       >
         <div className="max-w-[1320px] mx-auto px-6 lg:px-10">

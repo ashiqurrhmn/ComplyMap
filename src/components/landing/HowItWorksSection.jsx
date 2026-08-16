@@ -1,6 +1,13 @@
 "use client";
 
-import React from "react";
+import React, { useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 const steps = [
   {
@@ -24,29 +31,62 @@ const steps = [
 ];
 
 const HowItWorksSection = () => {
+  const containerRef = useRef(null);
+
+  useGSAP(() => {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: "top 75%",
+        toggleActions: "play none none reverse",
+      }
+    });
+
+    tl.from(".hiw-header", {
+      y: 40,
+      opacity: 0,
+      duration: 0.8,
+      ease: "power3.out",
+      stagger: 0.2
+    })
+    .from(".hiw-line", {
+      scaleX: 0,
+      transformOrigin: "left center",
+      duration: 1,
+      ease: "power3.inOut"
+    }, "-=0.4")
+    .from(".hiw-step", {
+      y: 50,
+      opacity: 0,
+      duration: 0.8,
+      ease: "power3.out",
+      stagger: 0.2
+    }, "-=0.6");
+  }, { scope: containerRef });
+
   return (
-    <section id="how-it-works" className="py-24 bg-[#f8f9fa] dark:bg-[#07090e] border-y border-gray-200 dark:border-white/[0.04] transition-colors duration-300 relative overflow-hidden">
+    <section ref={containerRef} id="how-it-works" className="py-24 bg-[#f8f9fa] dark:bg-[#07090e] border-y border-gray-200 dark:border-white/[0.04] transition-colors duration-300 relative overflow-hidden">
       
       {/* Background patterns */}
       <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[radial-gradient(ellipse,rgba(13,148,136,0.05)_0%,transparent_70%)] dark:bg-[radial-gradient(ellipse,rgba(13,148,136,0.1)_0%,transparent_70%)] rounded-full -translate-x-1/2" />
       
       <div className="max-w-[1320px] mx-auto px-6 lg:px-10 relative z-10">
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <h2 className="text-[36px] sm:text-[48px] font-extrabold text-gray-900 dark:text-white tracking-[-0.02em] leading-tight" style={{ fontFamily: "'Thunder', sans-serif", letterSpacing: "0.02em" }}>
+          <h2 className="hiw-header text-[36px] sm:text-[48px] font-extrabold text-gray-900 dark:text-white tracking-[-0.02em] leading-tight" style={{ fontFamily: "'Thunder', sans-serif", letterSpacing: "0.02em" }}>
             How It <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#006398] to-[#0d9488] dark:from-[#38bdf8] dark:to-[#0d9488]">Works</span>
           </h2>
-          <p className="mt-4 text-[16px] text-gray-600 dark:text-white/40" style={{ fontFamily: "Inter, sans-serif" }}>
+          <p className="hiw-header mt-4 text-[16px] text-gray-600 dark:text-white/40" style={{ fontFamily: "Inter, sans-serif" }}>
             Three simple steps to transform your global compliance from a manual headache into an automated breeze.
           </p>
         </div>
 
         <div className="relative mt-20" style={{ fontFamily: "Inter, sans-serif" }}>
           {/* Connecting line for desktop */}
-          <div className="hidden md:block absolute top-[45px] left-[10%] right-[10%] h-[1px] bg-gradient-to-r from-transparent via-gray-300 dark:via-white/[0.1] to-transparent" />
+          <div className="hiw-line hidden md:block absolute top-[45px] left-[10%] right-[10%] h-[1px] bg-gradient-to-r from-transparent via-gray-300 dark:via-white/[0.1] to-transparent" />
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8">
             {steps.map((step, idx) => (
-              <div key={idx} className="relative flex flex-col items-center text-center group">
+              <div key={idx} className="hiw-step relative flex flex-col items-center text-center group">
                 
                 {/* Number Badge */}
                 <div className="w-[90px] h-[90px] rounded-full bg-white dark:bg-[#0c0f17] border border-gray-200 dark:border-white/[0.08] flex items-center justify-center mb-8 relative z-10 group-hover:border-[#006398]/50 dark:group-hover:border-[#38bdf8]/50 transition-colors duration-500 shadow-sm dark:shadow-none">
