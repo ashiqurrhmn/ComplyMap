@@ -57,6 +57,14 @@ const BottomNav = () => {
         <span className="font-['Inter'] text-[10px] font-medium">Compliance</span>
       </Link>
 
+      {/* Reports */}
+      <Link href="/reports" className={getLinkClasses('/reports')}>
+        <div className={getIconContainerClasses('/reports')}>
+          <span className="material-symbols-outlined">analytics</span>
+        </div>
+        <span className="font-['Inter'] text-[10px] font-medium">Reports</span>
+      </Link>
+
       {/* Tasks */}
       <Link href="/tasks" className={getLinkClasses('/tasks')}>
         <div className={getIconContainerClasses('/tasks')}>

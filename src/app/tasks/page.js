@@ -9,7 +9,7 @@ export default function TasksPage() {
       <div className="max-w-[1440px] mx-auto w-full">
         
         {/* Breadcrumbs */}
-        <nav aria-label="Breadcrumb" className="flex text-[14px] text-gray-500 dark:text-gray-400 mb-6 font-medium mt-4 md:mt-8">
+        <nav aria-label="Breadcrumb" className="flex text-[14px] text-gray-500 dark:text-gray-400 mb-6 font-medium">
           <ol className="inline-flex items-center space-x-1 md:space-x-3">
             <li className="inline-flex items-center">
               <Link href="/tasks" className="hover:text-gray-900 dark:hover:text-white transition-colors">Tasks</Link>

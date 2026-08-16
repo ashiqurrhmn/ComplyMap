@@ -21,7 +21,7 @@ export default function CountriesPage() {
     <div className="flex-1 overflow-y-auto w-full pb-20">
       <div className="max-w-[1440px] mx-auto w-full">
         {/* Page Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8 mt-4 md:mt-8">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
           <div>
             <div className="flex items-center gap-4 mb-2">
               <span className="text-[28px] md:text-[36px]">{activeCountry.flag}</span>
