@@ -2,7 +2,7 @@
 
 <div align="center">
 
-### 🌐 **[Live Demo](#)** &nbsp;|&nbsp; 📦 **[Client Repo](#)** &nbsp;|&nbsp; 🔌 **[Server Repo](#)**
+### 🌐 **[Live Demo](https://complymap.netlify.app/)** &nbsp;|&nbsp; 📦 **[Client Repo](https://github.com/ashiqurrhmn/ComplyMap)**
 
 [![Next.js](https://img.shields.io/badge/Next.js-16-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
 [![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react)](https://react.dev/)
@@ -110,7 +110,7 @@ npm run dev
 
 | Service | Purpose | URL |
 |---------|---------|-----|
-| **Vercel** | Next.js frontend | *(Coming Soon)* |
+| **Netlify** | Next.js frontend | [complymap.netlify.app](https://complymap.netlify.app/) |
 
 ---
 
