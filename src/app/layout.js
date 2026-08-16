@@ -1,10 +1,8 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Sidebar from "@/components/Sidebar";
-import Header from "@/components/Header";
-import BottomNav from "@/components/BottomNav";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { ToasterProvider } from "@/components/ToasterProvider";
+import AppShell from "@/components/AppShell";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -35,14 +33,9 @@ export default function RootLayout({ children }) {
       <body className="min-h-full bg-[#f8f9fa] dark:bg-gray-950 flex text-[#191c1d] dark:text-gray-100 transition-colors">
         <ThemeProvider>
           <ToasterProvider />
-          <Sidebar />
-          <div className="flex flex-col flex-1 md:pl-[260px] w-full pb-16 md:pb-0">
-            <Header />
-            <main className="flex-1 p-4 md:p-6 max-w-[1440px] w-full mx-auto">
-              {children}
-            </main>
-          </div>
-          <BottomNav />
+          <AppShell>
+            {children}
+          </AppShell>
         </ThemeProvider>
       </body>
     </html>

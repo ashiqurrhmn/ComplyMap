@@ -8,7 +8,7 @@ const Sidebar = () => {
   const pathname = usePathname();
 
   const getLinkClasses = (path) => {
-    const isActive = path === '/' ? pathname === '/' : pathname.startsWith(path);
+    const isActive = path === '/dashboard' ? pathname === '/dashboard' : pathname.startsWith(path);
     return `flex items-center gap-3 px-6 py-3 font-['Inter'] text-[14px] font-medium transition-colors ${
       isActive
         ? 'bg-[#f0f0f1] dark:bg-gray-800 text-[#000000] dark:text-white border-r-2 border-[#000000] dark:border-white'
@@ -18,18 +18,18 @@ const Sidebar = () => {
 
   return (
     <nav className="fixed left-0 top-0 w-[260px] bg-[#ffffff] dark:bg-gray-900 border-r border-[#c6c6cd] dark:border-gray-700 flex flex-col h-full py-6 z-20 hidden md:flex transition-colors">
-      <div className="px-6 mb-8 flex items-center gap-3">
-        <div className="w-8 h-8 bg-[#000000] dark:bg-white rounded-lg flex items-center justify-center text-[#ffffff] dark:text-black font-bold">C</div>
+      <Link href="/" className="px-6 mb-8 flex items-center gap-3 group">
+        <div className="w-8 h-8 bg-[#000000] dark:bg-white rounded-lg flex items-center justify-center text-[#ffffff] dark:text-black font-bold group-hover:scale-105 transition-transform duration-200">C</div>
         <div>
           <h1 className="font-['Inter'] text-[24px] leading-[32px] font-bold text-[#000000] dark:text-white tracking-[-0.01em]">ComplyMap</h1>
           <p className="font-['Inter'] text-[11px] leading-[14px] text-[#45464c] dark:text-gray-400 font-medium">Enterprise Compliance</p>
         </div>
-      </div>
+      </Link>
       <div className="flex-1 overflow-y-auto">
         <ul className="space-y-1">
           {/* Dashboard */}
           <li>
-            <Link className={getLinkClasses('/')} href="/">
+            <Link className={getLinkClasses('/dashboard')} href="/dashboard">
               <span className="material-symbols-outlined">dashboard</span>
               Dashboard
             </Link>
