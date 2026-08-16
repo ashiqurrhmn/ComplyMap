@@ -22,7 +22,7 @@ const Sidebar = () => {
           </li>
           {/* Employees */}
           <li>
-            <Link className="flex items-center gap-4 px-6 py-3 border-l-4 border-transparent text-[#45464c] dark:text-gray-400 hover:bg-[#ffffff] dark:hover:bg-gray-800 hover:text-[#000000] dark:hover:text-white text-[14px] cursor-pointer transition-colors" href="#">
+            <Link className="flex items-center gap-4 px-6 py-3 border-l-4 border-transparent text-[#45464c] dark:text-gray-400 hover:bg-[#ffffff] dark:hover:bg-gray-800 hover:text-[#000000] dark:hover:text-white text-[14px] cursor-pointer transition-colors" href="/employees">
               <span className="material-symbols-outlined">group</span>
               Employees
             </Link>

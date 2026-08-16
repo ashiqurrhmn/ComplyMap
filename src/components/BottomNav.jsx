@@ -13,7 +13,7 @@ const BottomNav = () => {
       </Link>
 
       {/* Employees */}
-      <Link href="#" className="flex flex-col items-center justify-center w-full h-full text-[#45464c] dark:text-gray-400 hover:text-[#006398] dark:hover:text-[#38bdf8] hover:bg-[#ffffff] dark:hover:bg-gray-900 transition-colors gap-1 cursor-pointer active:opacity-80">
+      <Link href="/employees" className="flex flex-col items-center justify-center w-full h-full text-[#45464c] dark:text-gray-400 hover:text-[#006398] dark:hover:text-[#38bdf8] hover:bg-[#ffffff] dark:hover:bg-gray-900 transition-colors gap-1 cursor-pointer active:opacity-80">
         <div className="px-3 py-1 rounded-full border-b-2 border-transparent">
           <span className="material-symbols-outlined">group</span>
         </div>
