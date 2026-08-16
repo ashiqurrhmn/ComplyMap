@@ -18,12 +18,10 @@ const Sidebar = () => {
 
   return (
     <nav className="fixed left-0 top-0 w-[260px] bg-[#ffffff] dark:bg-gray-900 border-r border-[#c6c6cd] dark:border-gray-700 flex flex-col h-full py-6 z-20 hidden md:flex transition-colors">
-      <Link href="/" className="px-6 mb-8 flex items-center gap-3 group">
-        <div className="w-8 h-8 bg-[#000000] dark:bg-white rounded-lg flex items-center justify-center text-[#ffffff] dark:text-black font-bold group-hover:scale-105 transition-transform duration-200">C</div>
-        <div>
-          <h1 className="font-['Inter'] text-[24px] leading-[32px] font-bold text-[#000000] dark:text-white tracking-[-0.01em]">ComplyMap</h1>
-          <p className="font-['Inter'] text-[11px] leading-[14px] text-[#45464c] dark:text-gray-400 font-medium">Enterprise Compliance</p>
-        </div>
+      <Link href="/" className="px-6 mb-8 mt-2 flex items-center group">
+        <span className="text-[26px] text-gray-900 dark:text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-gray-900 group-hover:to-[#006398] dark:group-hover:from-white dark:group-hover:to-[#38bdf8] transition-all duration-300" style={{ fontFamily: "'Rush Driver', sans-serif" }}>
+          ComplyMap
+        </span>
       </Link>
       <div className="flex-1 overflow-y-auto">
         <ul className="space-y-1">

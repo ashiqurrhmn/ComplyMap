@@ -3,6 +3,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { ToasterProvider } from "@/components/ToasterProvider";
 import AppShell from "@/components/AppShell";
+import NextTopLoader from 'nextjs-toploader';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -31,6 +32,7 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body className="min-h-full bg-[#f8f9fa] dark:bg-gray-950 flex text-[#191c1d] dark:text-gray-100 transition-colors">
+        <NextTopLoader color="#006398" height={3} showSpinner={false} />
         <ThemeProvider>
           <ToasterProvider />
           <AppShell>
