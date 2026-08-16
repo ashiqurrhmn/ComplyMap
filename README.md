@@ -1,36 +1,137 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🗺️ ComplyMap — Compliance Tracking & Management Platform
 
-## Getting Started
+<div align="center">
 
-First, run the development server:
+### 🌐 **[Live Demo](#)** &nbsp;|&nbsp; 📦 **[Client Repo](#)** &nbsp;|&nbsp; 🔌 **[Server Repo](#)**
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+[![Next.js](https://img.shields.io/badge/Next.js-16-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react)](https://react.dev/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_v4-06B6D4?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
+
+A **production-grade** compliance and task management platform with employee tracking, task management across countries, and a modern, responsive UI.
+
+</div>
+
+---
+
+## 📖 Table of Contents
+
+- [Overview](#-overview)
+- [Tech Stack](#-tech-stack)
+- [Key Features](#-key-features)
+- [Architecture](#-architecture)
+- [Getting Started](#-getting-started)
+- [Deployment](#-deployment)
+- [Author](#-author)
+
+---
+
+## 🎯 Overview
+
+**ComplyMap** is a robust platform designed to simplify compliance tracking, task allocation, and employee management across multiple countries. It provides an intuitive interface for managing compliance tasks, employee details, and country-specific regulations, demonstrating modern web development practices.
+
+### Why This Project Stands Out
+
+- ✅ **Next.js 16 App Router** — Optimized routing and performance
+- ✅ **React 19 & React Compiler** — Utilizing the latest React features for seamless UI updates
+- ✅ **Tailwind CSS v4** — Utility-first styling for an accessible and responsive design
+- ✅ **Theme Support** — Integrated dark/light mode via `next-themes`
+- ✅ **Interactive Feedback** — Toast notifications utilizing `react-hot-toast`
+
+---
+
+## 🔧 Tech Stack
+
+### Frontend
+| Technology | Purpose |
+|------------|---------|
+| **Next.js 16** | App Router, React Server Components |
+| **React 19** | UI library with modern concurrent features |
+| **Tailwind CSS v4** | Utility-first responsive styling |
+| **next-themes** | Dark/Light mode theme management |
+| **react-hot-toast** | Elegant toast notifications |
+
+---
+
+## ✨ Key Features
+
+### 📋 Task & Employee Management
+- Comprehensive views for **Employees**, **Tasks**, and **Countries**.
+- Easy-to-use navigation utilizing a responsive Bottom Navigation bar.
+
+### 💅 UI/UX & Performance
+- Fully responsive across all devices (Mobile, Tablet, Desktop)
+- Seamless theme switching
+- Fast performance powered by the React Compiler
+
+---
+
+## 🏗️ Architecture
+
+### System Design
+
+```mermaid
+graph TB
+    subgraph Client["☁️ Client Application"]
+        NextJS["Next.js 16 App<br/>(Frontend)"]
+        UI["React 19 + Tailwind v4"]
+    end
+    
+    NextJS --> UI
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## 🚀 Getting Started
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Prerequisites
 
-## Learn More
+- **Node.js** v18+ (v22 recommended)
 
-To learn more about Next.js, take a look at the following resources:
+### Quick Start
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+# 1. Clone the client repository
+git clone https://github.com/ashiqurrhmn/ComplyMap-Client.git
+cd ComplyMap-Client
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# 2. Install frontend dependencies
+npm install
 
-## Deploy on Vercel
+# 3. Start the frontend development server
+npm run dev
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+# Frontend runs on: http://localhost:3000
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 🌐 Deployment
+
+| Service | Purpose | URL |
+|---------|---------|-----|
+| **Vercel** | Next.js frontend | *(Coming Soon)* |
+
+---
+
+## 👤 Author
+
+<div align="center">
+
+**Built by [Md. Ashiqur Rahman](https://ashiqur-rahman-portfolio00.netlify.app/)**
+
+[![Portfolio](https://img.shields.io/badge/Portfolio-ashiqur--rahman--portfolio00.netlify.app-00D4AA?style=for-the-badge&logo=netlify)](https://ashiqur-rahman-portfolio00.netlify.app/)
+[![GitHub](https://img.shields.io/badge/GitHub-@ashiqurrhmn-181717?style=for-the-badge&logo=github)](https://github.com/ashiqurrhmn)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Ashiqur_Rahman-0A66C2?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/ashiqur-rahman00/)
+
+</div>
+
+---
+
+<div align="center">
+
+### ⭐ Found this helpful? Give it a star!
+
+**Built with ❤️ using Next.js and React**
+
+</div>
