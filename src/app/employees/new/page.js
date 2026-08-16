@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import toast from 'react-hot-toast';
 
 export default function AddEmployee() {
   const router = useRouter();
@@ -19,7 +20,7 @@ export default function AddEmployee() {
 
   const handleSave = () => {
     if (!formData.fullName || !formData.email) {
-      alert('Please fill out the required fields (Name and Email).');
+      toast.error('Please fill out the required fields (Name and Email).');
       return;
     }
 
@@ -42,6 +43,7 @@ export default function AddEmployee() {
 
     localStorage.setItem('complymap_employees', JSON.stringify([...existing, newEmployee]));
     
+    toast.success('Employee added successfully!');
     router.push('/employees');
   };
 

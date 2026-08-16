@@ -4,6 +4,7 @@ import Sidebar from "@/components/Sidebar";
 import Header from "@/components/Header";
 import BottomNav from "@/components/BottomNav";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { ToasterProvider } from "@/components/ToasterProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -33,6 +34,7 @@ export default function RootLayout({ children }) {
       </head>
       <body className="min-h-full bg-[#f8f9fa] dark:bg-gray-950 flex text-[#191c1d] dark:text-gray-100 transition-colors">
         <ThemeProvider>
+          <ToasterProvider />
           <Sidebar />
           <div className="flex flex-col flex-1 md:pl-[260px] w-full pb-16 md:pb-0">
             <Header />
