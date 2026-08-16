@@ -1,7 +1,21 @@
+"use client";
+
 import React from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 const Sidebar = () => {
+  const pathname = usePathname();
+
+  const getLinkClasses = (path) => {
+    const isActive = path === '/' ? pathname === '/' : pathname.startsWith(path);
+    return `flex items-center gap-3 px-6 py-3 font-['Inter'] text-[14px] font-medium transition-colors ${
+      isActive
+        ? 'bg-[#f0f0f1] dark:bg-gray-800 text-[#000000] dark:text-white border-r-2 border-[#000000] dark:border-white'
+        : 'text-[#45464c] dark:text-gray-400 hover:bg-[#f8f8f9] dark:hover:bg-gray-800/50'
+    }`;
+  };
+
   return (
     <nav className="fixed left-0 top-0 w-[260px] bg-[#ffffff] dark:bg-gray-900 border-r border-[#c6c6cd] dark:border-gray-700 flex flex-col h-full py-6 z-20 hidden md:flex transition-colors">
       <div className="px-6 mb-8 flex items-center gap-3">
@@ -13,51 +27,51 @@ const Sidebar = () => {
       </div>
       <div className="flex-1 overflow-y-auto">
         <ul className="space-y-1">
-          {/* Dashboard (Active) */}
+          {/* Dashboard */}
           <li>
-            <Link className="flex items-center gap-4 px-6 py-3 border-l-4 border-[#006398] dark:border-[#38bdf8] bg-[#f3f4f5] dark:bg-gray-800 text-[#006398] dark:text-[#38bdf8] font-bold text-[14px] cursor-pointer transition-colors" href="/">
+            <Link className={getLinkClasses('/')} href="/">
               <span className="material-symbols-outlined">dashboard</span>
               Dashboard
             </Link>
           </li>
           {/* Employees */}
           <li>
-            <Link className="flex items-center gap-4 px-6 py-3 border-l-4 border-transparent text-[#45464c] dark:text-gray-400 hover:bg-[#ffffff] dark:hover:bg-gray-800 hover:text-[#000000] dark:hover:text-white text-[14px] cursor-pointer transition-colors" href="/employees">
+            <Link className={getLinkClasses('/employees')} href="/employees">
               <span className="material-symbols-outlined">group</span>
               Employees
             </Link>
           </li>
           {/* Countries */}
           <li>
-            <Link className="flex items-center gap-4 px-6 py-3 border-l-4 border-transparent text-[#45464c] dark:text-gray-400 hover:bg-[#ffffff] dark:hover:bg-gray-800 hover:text-[#000000] dark:hover:text-white text-[14px] cursor-pointer transition-colors" href="#">
+            <Link className={getLinkClasses('/countries')} href="#">
               <span className="material-symbols-outlined">public</span>
               Countries
             </Link>
           </li>
           {/* Compliance */}
           <li>
-            <Link className="flex items-center gap-4 px-6 py-3 border-l-4 border-transparent text-[#45464c] dark:text-gray-400 hover:bg-[#ffffff] dark:hover:bg-gray-800 hover:text-[#000000] dark:hover:text-white text-[14px] cursor-pointer transition-colors" href="#">
+            <Link className={getLinkClasses('/compliance')} href="#">
               <span className="material-symbols-outlined">gavel</span>
               Compliance
             </Link>
           </li>
           {/* Tasks */}
           <li>
-            <Link className="flex items-center gap-4 px-6 py-3 border-l-4 border-transparent text-[#45464c] dark:text-gray-400 hover:bg-[#ffffff] dark:hover:bg-gray-800 hover:text-[#000000] dark:hover:text-white text-[14px] cursor-pointer transition-colors" href="#">
+            <Link className={getLinkClasses('/tasks')} href="#">
               <span className="material-symbols-outlined">assignment</span>
               Tasks
             </Link>
           </li>
           {/* Reports */}
           <li>
-            <Link className="flex items-center gap-4 px-6 py-3 border-l-4 border-transparent text-[#45464c] dark:text-gray-400 hover:bg-[#ffffff] dark:hover:bg-gray-800 hover:text-[#000000] dark:hover:text-white text-[14px] cursor-pointer transition-colors" href="#">
+            <Link className={getLinkClasses('/reports')} href="#">
               <span className="material-symbols-outlined">analytics</span>
               Reports
             </Link>
           </li>
           {/* Settings */}
           <li>
-            <Link className="flex items-center gap-4 px-6 py-3 border-l-4 border-transparent text-[#45464c] dark:text-gray-400 hover:bg-[#ffffff] dark:hover:bg-gray-800 hover:text-[#000000] dark:hover:text-white text-[14px] cursor-pointer transition-colors" href="#">
+            <Link className={getLinkClasses('/settings')} href="#">
               <span className="material-symbols-outlined">settings</span>
               Settings
             </Link>
