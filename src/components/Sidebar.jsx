@@ -69,13 +69,6 @@ const Sidebar = () => {
               Reports
             </Link>
           </li>
-          {/* Settings */}
-          <li>
-            <Link className={getLinkClasses('/settings')} href="#">
-              <span className="material-symbols-outlined">settings</span>
-              Settings
-            </Link>
-          </li>
         </ul>
       </div>
       <div className="px-6 mt-auto pt-6 border-t border-[#c6c6cd] dark:border-gray-700">

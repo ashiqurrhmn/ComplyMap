@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import { ThemeToggle } from "./ThemeToggle";
 
 const Header = () => {
@@ -23,10 +24,10 @@ const Header = () => {
       
       {/* Trailing Actions */}
       <div className="flex items-center gap-2 md:gap-4">
-        <button className="text-[#45464c] dark:text-gray-400 hover:text-[#006398] dark:hover:text-[#38bdf8] transition-colors relative p-2 rounded-full hover:bg-[#f3f4f5] dark:hover:bg-gray-700">
+        <Link href="/notifications" className="text-[#45464c] dark:text-gray-400 hover:text-[#006398] dark:hover:text-[#38bdf8] transition-colors relative p-2 rounded-full hover:bg-[#f3f4f5] dark:hover:bg-gray-700">
           <span className="material-symbols-outlined">notifications</span>
           <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-[#ba1a1a] rounded-full"></span>
-        </button>
+        </Link>
         <ThemeToggle />
         <button className="text-[#45464c] dark:text-gray-400 hover:text-[#006398] dark:hover:text-[#38bdf8] transition-colors p-2 rounded-full hover:bg-[#f3f4f5] dark:hover:bg-gray-700 hidden sm:block">
           <span className="material-symbols-outlined">help</span>
