@@ -199,8 +199,10 @@ export default function Employees() {
                       </span>
                     </td>
                     <td className="py-3 px-6 text-right">
-                      <div className="flex items-center justify-end gap-2 md:opacity-0 md:group-hover:opacity-100 transition-opacity">
-                        <button className="text-[#006398] dark:text-[#38bdf8] hover:underline font-semibold text-[12px] px-2 py-1">View Profile</button>
+                      <div className="flex items-center justify-end gap-2 transition-opacity">
+                        <Link href={`/employees/${employee.id}`}>
+                          <button className="text-[#006398] dark:text-[#38bdf8] hover:underline font-semibold text-[12px] px-2 py-1">View Profile</button>
+                        </Link>
                         <button className="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white p-1 rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
                           <span className="material-symbols-outlined text-[18px]">edit</span>
                         </button>
