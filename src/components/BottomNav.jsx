@@ -42,7 +42,7 @@ const BottomNav = () => {
       </Link>
 
       {/* Countries */}
-      <Link href="#" className={getLinkClasses('/countries')}>
+      <Link href="/countries" className={getLinkClasses('/countries')}>
         <div className={getIconContainerClasses('/countries')}>
           <span className="material-symbols-outlined">public</span>
         </div>

@@ -43,7 +43,7 @@ const Sidebar = () => {
           </li>
           {/* Countries */}
           <li>
-            <Link className={getLinkClasses('/countries')} href="#">
+            <Link className={getLinkClasses('/countries')} href="/countries">
               <span className="material-symbols-outlined">public</span>
               Countries
             </Link>
