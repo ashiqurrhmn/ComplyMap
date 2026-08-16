@@ -1,6 +1,105 @@
-import React from 'react';
+"use client";
+
+import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
+
+const DEFAULT_EMPLOYEES = [
+  {
+    id: '1',
+    name: 'Sarah Johnson',
+    email: 's.johnson@example.com',
+    country: 'us',
+    countryName: 'United States',
+    type: 'Full-time',
+    startDate: 'Oct 12, 2021',
+    compliance: 94,
+    status: 'Compliant',
+    avatar: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAUMqPHT141h9OFUMccAUBeUqnQR757vLONF45TiXf0n5UdLKvWT6wRLOw-rtj_lyo4hZiwp_7GY7N2E3-HfCm9wgj4MKbzKzb7-jx86qqJcw2fgLeD6-3XLZCeQ0q2BgJ-CE6yo2pDadfMbggmifKJEhzMgBUPy2eHFXbGy0iy_GMvhBiLTtLraHoFIaUTbhN8HmGQ6KhqEmzzaVaZhTNjGmeqnuicaJIGL1crOm9PblOPW9Ogl_4Iyw'
+  },
+  {
+    id: '2',
+    name: 'Daniel Smith',
+    email: 'd.smith@example.de',
+    country: 'de',
+    countryName: 'Germany',
+    type: 'Full-time',
+    startDate: 'Mar 05, 2023',
+    compliance: 76,
+    status: 'At Risk',
+    avatar: 'https://lh3.googleusercontent.com/aida-public/AB6AXuB1AA7gRdMLbE4K52DHW879SKw6_PVHUyVw0IvFq8PPDvkDvQu2T2TqjN7JHo3fJUHF_IPO45wjmfvIqJo4iRcq9xlKmrM6p85C1hHBV66V6vyUrz1DCxUapXkLbu_Lyo2qnNs-HEKZiJyvWXk80fBWUj1tZUAFS802NB6sThd1zupsogITZ3bLRNWVxCRzvHEkpBb4uG5kBdi0Zf9H_QPoeQIu9GGdsrAEmq_S6zMEIfafBT4-uWHt3Q'
+  },
+  {
+    id: '3',
+    name: 'Aisha Rahman',
+    email: 'a.rahman@example.bd',
+    country: 'bd',
+    countryName: 'Bangladesh',
+    type: 'Contractor',
+    startDate: 'Jan 10, 2024',
+    compliance: 85,
+    status: 'Needs Attention',
+    avatar: 'https://lh3.googleusercontent.com/aida-public/AB6AXuC6XOs-QZws0WpWhaCeptv19yXqTL9YGgdYA5MzhzhLiOBfjq78XGqQnY9GsJMaYvpwbB39rpq6a_PWOGlFEMX1lkuVeciiW8rw8_u_xR7ZbmvX_pprNQ-zZgCSsogDOuZcfNeNjtJCfqXGa8Lq7sDHL6uWBXqcMUCk-96ojODhFn15NrCMoV7oir7xwpDGq2FFoaBsP9s1i6bvG77VaxSMbCHwRASnak7TmCq23dVYrX-2wPQDRsxdOg'
+  }
+];
+
+const getStatusStyles = (status) => {
+  switch (status) {
+    case 'Compliant':
+      return {
+        bg: 'bg-[#ecfdf5] dark:bg-teal-900/40',
+        text: 'text-[#065f46] dark:text-teal-300',
+        border: 'border-[#d1fae5] dark:border-teal-700',
+        icon: 'check_circle'
+      };
+    case 'At Risk':
+      return {
+        bg: 'bg-[#fef2f2] dark:bg-red-900/40',
+        text: 'text-[#991b1b] dark:text-red-300',
+        border: 'border-[#fee2e2] dark:border-red-700',
+        icon: 'error'
+      };
+    case 'Needs Attention':
+    default:
+      return {
+        bg: 'bg-blue-50 dark:bg-blue-900/40',
+        text: 'text-blue-700 dark:text-blue-300',
+        border: 'border-blue-200 dark:border-blue-700',
+        icon: 'info'
+      };
+  }
+};
+
+const getProgressBarColor = (status) => {
+  if (status === 'Compliant') return 'bg-teal-600 dark:bg-teal-400';
+  if (status === 'At Risk') return 'bg-red-600 dark:bg-red-500';
+  return 'bg-blue-600 dark:bg-blue-400';
+};
+
+const countryNames = {
+  us: 'United States',
+  uk: 'United Kingdom',
+  de: 'Germany',
+  bd: 'Bangladesh',
+  fr: 'France'
+};
 
 export default function Employees() {
+  const [employees, setEmployees] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    // Load from local storage on mount
+    const stored = localStorage.getItem('complymap_employees');
+    if (stored) {
+      setEmployees(JSON.parse(stored));
+    } else {
+      // Seed with default data if empty
+      localStorage.setItem('complymap_employees', JSON.stringify(DEFAULT_EMPLOYEES));
+      setEmployees(DEFAULT_EMPLOYEES);
+    }
+    setIsLoaded(true);
+  }, []);
+
   return (
     <div className="flex-1 overflow-y-auto w-full">
       {/* Page Header */}
@@ -10,10 +109,12 @@ export default function Employees() {
           <p className="text-[16px] text-gray-500 dark:text-gray-400 mt-2">Manage your global workforce compliance</p>
         </div>
         <div className="flex items-center gap-3">
-          <button className="bg-teal-600 hover:bg-teal-700 text-white font-semibold text-[14px] px-4 py-2.5 rounded-lg flex items-center gap-2 transition-colors shadow-sm">
-            <span className="material-symbols-outlined text-sm">add</span>
-            Add Employee
-          </button>
+          <Link href="/employees/new">
+            <button className="bg-teal-600 hover:bg-teal-700 text-white font-semibold text-[14px] px-4 py-2.5 rounded-lg flex items-center gap-2 transition-colors shadow-sm">
+              <span className="material-symbols-outlined text-sm">add</span>
+              Add Employee
+            </button>
+          </Link>
         </div>
       </div>
 
@@ -60,137 +161,66 @@ export default function Employees() {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200 dark:divide-gray-700 text-[14px] text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-900">
-              
-              {/* Row 1 */}
-              <tr className="hover:bg-[#F0F9FF] dark:hover:bg-blue-900/20 transition-colors group h-16">
-                <td className="py-3 px-6">
-                  <div className="flex items-center gap-3">
-                    <div className="h-8 w-8 rounded-full bg-gray-100 dark:bg-gray-800 overflow-hidden border border-gray-200 dark:border-gray-700 flex-shrink-0">
-                      <img alt="Sarah Johnson" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUMqPHT141h9OFUMccAUBeUqnQR757vLONF45TiXf0n5UdLKvWT6wRLOw-rtj_lyo4hZiwp_7GY7N2E3-HfCm9wgj4MKbzKzb7-jx86qqJcw2fgLeD6-3XLZCeQ0q2BgJ-CE6yo2pDadfMbggmifKJEhzMgBUPy2eHFXbGy0iy_GMvhBiLTtLraHoFIaUTbhN8HmGQ6KhqEmzzaVaZhTNjGmeqnuicaJIGL1crOm9PblOPW9Ogl_4Iyw"/>
-                    </div>
-                    <div>
-                      <div className="font-medium text-gray-900 dark:text-white">Sarah Johnson</div>
-                      <div className="text-gray-500 dark:text-gray-400 text-[12px]">s.johnson@example.com</div>
-                    </div>
-                  </div>
-                </td>
-                <td className="py-3 px-6">
-                  <div className="flex items-center gap-2 text-gray-600 dark:text-gray-300">
-                    <span className="material-symbols-outlined text-[16px]">public</span> United States
-                  </div>
-                </td>
-                <td className="py-3 px-6 text-gray-600 dark:text-gray-300">Full-time</td>
-                <td className="py-3 px-6 text-gray-500 dark:text-gray-400">Oct 12, 2021</td>
-                <td className="py-3 px-6">
-                  <div className="flex items-center gap-2">
-                    <span className="font-medium">94%</span>
-                    <div className="w-16 h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
-                      <div className="h-full bg-teal-600 dark:bg-teal-400 w-[94%]"></div>
-                    </div>
-                  </div>
-                </td>
-                <td className="py-3 px-6">
-                  <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-[12px] font-medium bg-[#ecfdf5] text-[#065f46] border border-[#d1fae5] dark:bg-teal-900/40 dark:text-teal-300 dark:border-teal-700">
-                    <span className="material-symbols-outlined text-[14px]">check_circle</span> Compliant
-                  </span>
-                </td>
-                <td className="py-3 px-6 text-right">
-                  <div className="flex items-center justify-end gap-2 md:opacity-0 md:group-hover:opacity-100 transition-opacity">
-                    <button className="text-[#006398] dark:text-[#38bdf8] hover:underline font-semibold text-[12px] px-2 py-1">View Profile</button>
-                    <button className="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white p-1 rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-                      <span className="material-symbols-outlined text-[18px]">edit</span>
-                    </button>
-                  </div>
-                </td>
-              </tr>
-
-              {/* Row 2 */}
-              <tr className="hover:bg-[#F0F9FF] dark:hover:bg-blue-900/20 transition-colors group h-16">
-                <td className="py-3 px-6">
-                  <div className="flex items-center gap-3">
-                    <div className="h-8 w-8 rounded-full bg-gray-100 dark:bg-gray-800 overflow-hidden border border-gray-200 dark:border-gray-700 flex-shrink-0">
-                      <img alt="Daniel Smith" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1AA7gRdMLbE4K52DHW879SKw6_PVHUyVw0IvFq8PPDvkDvQu2T2TqjN7JHo3fJUHF_IPO45wjmfvIqJo4iRcq9xlKmrM6p85C1hHBV66V6vyUrz1DCxUapXkLbu_Lyo2qnNs-HEKZiJyvWXk80fBWUj1tZUAFS802NB6sThd1zupsogITZ3bLRNWVxCRzvHEkpBb4uG5kBdi0Zf9H_QPoeQIu9GGdsrAEmq_S6zMEIfafBT4-uWHt3Q"/>
-                    </div>
-                    <div>
-                      <div className="font-medium text-gray-900 dark:text-white">Daniel Smith</div>
-                      <div className="text-gray-500 dark:text-gray-400 text-[12px]">d.smith@example.de</div>
-                    </div>
-                  </div>
-                </td>
-                <td className="py-3 px-6">
-                  <div className="flex items-center gap-2 text-gray-600 dark:text-gray-300">
-                    <span className="material-symbols-outlined text-[16px]">public</span> Germany
-                  </div>
-                </td>
-                <td className="py-3 px-6 text-gray-600 dark:text-gray-300">Full-time</td>
-                <td className="py-3 px-6 text-gray-500 dark:text-gray-400">Mar 05, 2023</td>
-                <td className="py-3 px-6">
-                  <div className="flex items-center gap-2">
-                    <span className="font-medium">76%</span>
-                    <div className="w-16 h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
-                      <div className="h-full bg-red-600 dark:bg-red-500 w-[76%]"></div>
-                    </div>
-                  </div>
-                </td>
-                <td className="py-3 px-6">
-                  <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-[12px] font-medium bg-[#fef2f2] text-[#991b1b] border border-[#fee2e2] dark:bg-red-900/40 dark:text-red-300 dark:border-red-700">
-                    <span className="material-symbols-outlined text-[14px]">error</span> At Risk
-                  </span>
-                </td>
-                <td className="py-3 px-6 text-right">
-                  <div className="flex items-center justify-end gap-2 md:opacity-0 md:group-hover:opacity-100 transition-opacity">
-                    <button className="text-[#006398] dark:text-[#38bdf8] hover:underline font-semibold text-[12px] px-2 py-1">View Profile</button>
-                    <button className="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white p-1 rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-                      <span className="material-symbols-outlined text-[18px]">edit</span>
-                    </button>
-                  </div>
-                </td>
-              </tr>
-
-              {/* Row 3 */}
-              <tr className="hover:bg-[#F0F9FF] dark:hover:bg-blue-900/20 transition-colors group h-16">
-                <td className="py-3 px-6">
-                  <div className="flex items-center gap-3">
-                    <div className="h-8 w-8 rounded-full bg-gray-100 dark:bg-gray-800 overflow-hidden border border-gray-200 dark:border-gray-700 flex-shrink-0">
-                      <img alt="Aisha Rahman" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6XOs-QZws0WpWhaCeptv19yXqTL9YGgdYA5MzhzhLiOBfjq78XGqQnY9GsJMaYvpwbB39rpq6a_PWOGlFEMX1lkuVeciiW8rw8_u_xR7ZbmvX_pprNQ-zZgCSsogDOuZcfNeNjtJCfqXGa8Lq7sDHL6uWBXqcMUCk-96ojODhFn15NrCMoV7oir7xwpDGq2FFoaBsP9s1i6bvG77VaxSMbCHwRASnak7TmCq23dVYrX-2wPQDRsxdOg"/>
-                    </div>
-                    <div>
-                      <div className="font-medium text-gray-900 dark:text-white">Aisha Rahman</div>
-                      <div className="text-gray-500 dark:text-gray-400 text-[12px]">a.rahman@example.bd</div>
-                    </div>
-                  </div>
-                </td>
-                <td className="py-3 px-6">
-                  <div className="flex items-center gap-2 text-gray-600 dark:text-gray-300">
-                    <span className="material-symbols-outlined text-[16px]">public</span> Bangladesh
-                  </div>
-                </td>
-                <td className="py-3 px-6 text-gray-600 dark:text-gray-300">Contractor</td>
-                <td className="py-3 px-6 text-gray-500 dark:text-gray-400">Jan 10, 2024</td>
-                <td className="py-3 px-6">
-                  <div className="flex items-center gap-2">
-                    <span className="font-medium">85%</span>
-                    <div className="w-16 h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
-                      <div className="h-full bg-blue-600 dark:bg-blue-400 w-[85%]"></div>
-                    </div>
-                  </div>
-                </td>
-                <td className="py-3 px-6">
-                  <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-[12px] font-medium bg-blue-50 text-blue-700 border border-blue-200 dark:bg-blue-900/40 dark:text-blue-300 dark:border-blue-700">
-                    <span className="material-symbols-outlined text-[14px]">info</span> Needs Attention
-                  </span>
-                </td>
-                <td className="py-3 px-6 text-right">
-                  <div className="flex items-center justify-end gap-2 md:opacity-0 md:group-hover:opacity-100 transition-opacity">
-                    <button className="text-[#006398] dark:text-[#38bdf8] hover:underline font-semibold text-[12px] px-2 py-1">View Profile</button>
-                    <button className="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white p-1 rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-                      <span className="material-symbols-outlined text-[18px]">edit</span>
-                    </button>
-                  </div>
-                </td>
-              </tr>
+              {isLoaded ? employees.map((employee) => {
+                const styles = getStatusStyles(employee.status);
+                const progressColor = getProgressBarColor(employee.status);
+                
+                return (
+                  <tr key={employee.id} className="hover:bg-[#F0F9FF] dark:hover:bg-blue-900/20 transition-colors group h-16">
+                    <td className="py-3 px-6">
+                      <div className="flex items-center gap-3">
+                        <div className="h-8 w-8 rounded-full bg-gray-100 dark:bg-gray-800 overflow-hidden border border-gray-200 dark:border-gray-700 flex-shrink-0">
+                          <img alt={employee.name} className="w-full h-full object-cover" src={employee.avatar} />
+                        </div>
+                        <div>
+                          <div className="font-medium text-gray-900 dark:text-white">{employee.name}</div>
+                          <div className="text-gray-500 dark:text-gray-400 text-[12px]">{employee.email}</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="py-3 px-6">
+                      <div className="flex items-center gap-2 text-gray-600 dark:text-gray-300">
+                        <span className="material-symbols-outlined text-[16px]">public</span> {countryNames[employee.country] || employee.countryName || employee.country}
+                      </div>
+                    </td>
+                    <td className="py-3 px-6 text-gray-600 dark:text-gray-300">{employee.type}</td>
+                    <td className="py-3 px-6 text-gray-500 dark:text-gray-400">{employee.startDate}</td>
+                    <td className="py-3 px-6">
+                      <div className="flex items-center gap-2">
+                        <span className="font-medium">{employee.compliance}%</span>
+                        <div className="w-16 h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                          <div className={`h-full ${progressColor}`} style={{ width: `${employee.compliance}%` }}></div>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="py-3 px-6">
+                      <span className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-[12px] font-medium border ${styles.bg} ${styles.text} ${styles.border}`}>
+                        <span className="material-symbols-outlined text-[14px]">{styles.icon}</span> {employee.status}
+                      </span>
+                    </td>
+                    <td className="py-3 px-6 text-right">
+                      <div className="flex items-center justify-end gap-2 md:opacity-0 md:group-hover:opacity-100 transition-opacity">
+                        <button className="text-[#006398] dark:text-[#38bdf8] hover:underline font-semibold text-[12px] px-2 py-1">View Profile</button>
+                        <button className="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white p-1 rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                          <span className="material-symbols-outlined text-[18px]">edit</span>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                );
+              }) : (
+                <tr className="h-16">
+                  <td colSpan="7" className="text-center text-gray-500">Loading employees...</td>
+                </tr>
+              )}
             </tbody>
           </table>
+          
+          {isLoaded && employees.length === 0 && (
+            <div className="p-8 text-center text-gray-500">
+              No employees found. Add one to get started.
+            </div>
+          )}
         </div>
       </div>
     </div>
