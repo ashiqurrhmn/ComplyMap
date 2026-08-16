@@ -57,7 +57,7 @@ const Sidebar = () => {
           </li>
           {/* Tasks */}
           <li>
-            <Link className={getLinkClasses('/tasks')} href="#">
+            <Link className={getLinkClasses('/tasks')} href="/tasks">
               <span className="material-symbols-outlined">assignment</span>
               Tasks
             </Link>

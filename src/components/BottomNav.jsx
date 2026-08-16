@@ -58,7 +58,7 @@ const BottomNav = () => {
       </Link>
 
       {/* Tasks */}
-      <Link href="#" className={getLinkClasses('/tasks')}>
+      <Link href="/tasks" className={getLinkClasses('/tasks')}>
         <div className={getIconContainerClasses('/tasks')}>
           <span className="material-symbols-outlined">assignment</span>
         </div>
